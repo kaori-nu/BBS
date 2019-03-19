@@ -5,7 +5,7 @@ if (!file_exists($file_name)) {
     touch($file_name);
 }
 
-// メッセージの保存
+// コメントの保存
 if (isset($_POST["comment"])) {
     // 保存されているコメントを取得する
     $saved_comment = file_get_contents("data.txt");
@@ -19,8 +19,8 @@ if (isset($_POST["comment"])) {
         echo "書き込み失敗";
     } else {
         // 保存に成功したら保存した文字を表示
-        echo $_POST["comment"];
-        // echo $saved_comment;
+        // コメントを改行して表示
+        echo nl2br(htmlspecialchars($_POST["comment"]));
     }
 }
 ?>
@@ -32,7 +32,7 @@ if (isset($_POST["comment"])) {
     </head>
     <body>
         <form action="index.php" method="post">
-        コメント: <input type="text" name="comment"><br/>
+        コメント: <textarea name="comment" rows="5" cols="50" wrap="hard"></textarea><br>
         <input type="submit" value="投稿">
         </form>
     </body>
