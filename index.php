@@ -5,8 +5,15 @@ if (!file_exists($file_name)) {
     touch($file_name);
 }
 
+// //　名前の保存
+// if (isset($_POST["name"]) && is_string($_POST["name"])) {
+//     echo($name = $_POST["name"]);
+// } else {
+//     echo($name = "");
+// }
+
 // コメントの保存
-if (isset($_POST["comment"])) {
+if (isset($_POST["comment"]) && isset($_POST["name"])) {
     // 保存されているコメントを取得する
     $saved_comment = file_get_contents("data.txt");
     // 取得した保存済みのコメントの先頭に投稿を追加する
@@ -32,7 +39,10 @@ if (isset($_POST["comment"])) {
     </head>
     <body>
         <form action="index.php" method="post">
-        コメント: <textarea name="comment" rows="5" cols="50" wrap="hard"></textarea><br>
+        名前:<br/>
+        <input type = "text" name ="name/"><br/>
+        コメント:<br/>
+        <textarea name="comment" rows="5" cols="50" wrap="hard"></textarea><br>
         <input type="submit" value="投稿">
         </form>
     </body>
